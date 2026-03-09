@@ -1,0 +1,27 @@
+{
+"type": "FeatureCollection",
+"features": [
+{
+"type": "Feature",
+"properties": {
+"species": "Rana temporaria",
+"year": 2023
+},
+"geometry": {
+"type": "Point",
+"coordinates": [13.4050, 52.5200]
+}
+},
+{
+"type": "Feature",
+"properties": {
+"species": "Bufo bufo",
+"year": 2022
+},
+"geometry": {
+"type": "Point",
+"coordinates": [13.30, 52.60]
+}
+}
+]
+}
