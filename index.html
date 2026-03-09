@@ -1,62 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="utf-8">
+<title>Amphibian Observations</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+body { margin:0; font-family:sans-serif; }
+#map { height:100vh; }
+</style>
+
 </head>
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="utf-8"&gt;</p>
-<p class="p1">&lt;title&gt;Amphibian Observations&lt;/title&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1">body { margin:0; font-family: sans-serif; }</p>
-<p class="p1">#map { height:100vh; }</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="map"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"&gt;&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">const map = L.map('map').setView([51.3, 10.1], 6)</p>
-<p class="p2"><br></p>
-<p class="p1">L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{</p>
-<p class="p1">attribution:'© OpenStreetMap'</p>
-<p class="p1">}).addTo(map)</p>
-<p class="p2"><br></p>
-<p class="p1">fetch("amphibians.geojson")</p>
-<p class="p1">.then(r =&gt; r.json())</p>
-<p class="p1">.then(data =&gt; {</p>
-<p class="p2"><br></p>
-<p class="p1">L.geoJSON(data,{</p>
-<p class="p1">onEachFeature:(feature,layer)=&gt;{</p>
-<p class="p1">layer.bindPopup(</p>
-<p class="p1">"&lt;b&gt;"+feature.properties.species+"&lt;/b&gt;&lt;br&gt;"+feature.properties.year</p>
-<p class="p1">)</p>
-<p class="p1">}</p>
-<p class="p1">}).addTo(map)</p>
-<p class="p2"><br></p>
-<p class="p1">})</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+const map = L.map('map').setView([51.3,10.1],6)
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+attribution:'© OpenStreetMap'
+}).addTo(map)
+
+fetch("amphibians.geojson")
+.then(r=>r.json())
+.then(data=>{
+
+L.geoJSON(data,{
+onEachFeature:(feature,layer)=>{
+layer.bindPopup(
+"<b>"+feature.properties.species+"</b><br>"+feature.properties.year
+)
+}
+}).addTo(map)
+
+})
+
+</script>
+
 </body>
 </html>
